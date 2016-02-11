@@ -2,6 +2,7 @@
 <launch>
 	<arg name="namespace" default=""/>
 	
+	<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
 
 	<node name="onohat_base" pkg="opsoro_workbench_onohat" type="onohat_base.py"/>
 
