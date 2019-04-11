@@ -59,6 +59,9 @@ add_service_files(
    SetStatusLed.srv
    Reset.srv
    Ping.srv
+   ServoCommand.srv
+   EnablePcaPower.srv
+   ServoBroadcastCommand.srv
  )
 
 ## Generate actions in the 'action' folder
