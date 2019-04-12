@@ -82,7 +82,7 @@ class OnohatRos(object):
 
 	def init_servo_interface(self):
 		with Hardware.lock:
-            Hardware.Servo.init()
+            		Hardware.Servo.init()
 
 	def status_led_server(self, req):
 		#turn led on
@@ -119,7 +119,7 @@ class OnohatRos(object):
 		return True
 
 
-	def set_servo_server(self, req)
+	def set_servo_server(self, req):
 		with Hardware.lock:
 			Hardware.Servo.set(channel = req.channel, pos=req.value)
 		

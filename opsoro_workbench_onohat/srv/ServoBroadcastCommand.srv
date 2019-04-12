@@ -1,5 +1,5 @@
 #send the 
 
-float32[] command_list
+uint32[] command_list
 ---
 bool result
