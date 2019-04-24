@@ -1,0 +1,21 @@
+{
+  "voice_lines": [
+    {
+      "emotion": "neutral",
+      "output": {
+        "type": "tts",
+        "data": "Burp"
+      }
+    },
+    {
+      "emotion": "happy",
+      "output": {
+        "type": "wav",
+        "data": {
+          "url": "/media/sounds/Burp.wav",
+          "name": "Burp"
+        }
+      }
+    }
+  ]
+}

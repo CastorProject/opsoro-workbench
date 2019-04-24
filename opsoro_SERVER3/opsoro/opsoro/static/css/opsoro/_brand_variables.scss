@@ -1,0 +1,25 @@
+$rounding_small: 0.7rem;
+$rounding_medium: 1rem;
+$rounding_large: 2rem;
+
+$header_font: 'Avenir Next';
+$text_font: 'Avenir Next';
+
+@font-face {
+    font-family: 'Avenir Next';
+    src: url('../fonts/AvenirNext-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'Avenir Next';
+    src: url('../fonts/AvenirNext-DemiBold.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Avenir Next';
+    src: url('../fonts/AvenirNext-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}

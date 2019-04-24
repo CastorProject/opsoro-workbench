@@ -1,0 +1,20 @@
+{% extends "play_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{{ _('Confirm Email') }}{% endblock %}
+
+{% block app_body %}
+<div class="row">
+  <div class="small-12 medium-8 medium-offset-2 columns">
+    <form method="post" action="{% url "account_confirm_email" key=confirmation.key %}">
+      <legend>{{ _('Confirm Email') }}</legend>
+      <fieldset>
+        {% csrf_token %}
+        <p>{% blocktrans with email=confirmation.email_address.email %}Confirm email address <b>{{ email }}</b>?{% endblocktrans %}</p>
+        <button type="submit" class="btn btn-success">{{ _('Confirm') }}</button>
+      </fieldset>
+    </form>
+  </div>
+</div>
+{% endblock %}

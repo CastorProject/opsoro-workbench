@@ -1,0 +1,58 @@
+{
+  "voice_lines": [
+    {
+      "emotion": "wink",
+      "output": {
+        "type": "wav",
+        "data": {
+          "url": "/media/sounds/Burp_j7wgNUC.wav",
+          "name": "Burp"
+        }
+      }
+    },
+    {
+      "emotion": "smile",
+      "output": {
+        "type": "wav",
+        "data": {
+          "url": "/media/sounds/Hallo.wav",
+          "name": "Hallo"
+        }
+      }
+    },
+    {
+      "emotion": "smile",
+      "output": {
+        "type": "tts",
+        "data": "Ouch!"
+      }
+    },
+    {
+      "emotion": "smile",
+      "output": {
+        "type": "wav",
+        "data": {
+          "url": "/media/sounds/Hallo.wav",
+          "name": "Hallo"
+        }
+      }
+    },
+    {
+      "emotion": "smile",
+      "output": {
+        "type": "tts",
+        "data": "No!"
+      }
+    },
+    {
+      "emotion": "smile",
+      "output": {
+        "type": "wav",
+        "data": {
+          "url": "/media/sounds/Hallo.wav",
+          "name": "Hallo"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{% extends "site_base.html" %}
+{% load static %}
+{% load i18n %}
+{% load account_tags %}
+
+{% block head_title %}{{ _('Apps') }}{% endblock %}
+
+{% block body_class %}apps{% endblock %}
+
+{% block default_app_styles %}
+	<link rel='stylesheet' href='{% static 'css/opsoroPlay.min.css' %}'/>
+{% endblock %}
+
+{% block body %}
+	<section class="apps-preview">
+		<div class="">
+			<h1></h1>
+
+			<div class="row">
+				<div class="small-12 medium-12 columns">
+					<h2>Welcome to our Online Platform for Social Robotics</h2>
+					<p>
+						Full version coming soon, but try out our beta now! Only for a limited amount of users, hurry up!
+					</p>
+					<p>
+						<a class="btn btn-primary" href="{% url 'account_signup' %}">Try it out now!</a>
+					</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="small-12 medium-5 columns">
+					<div class="placeholder" data-large="/media/apps/apps.png">
+					  <img src="/media/apps/apps_pre.png" class="img-small" alt="apps">
+					  <div style="padding-bottom: 66.6%;"></div>
+					</div>
+
+
+				</div>
+				<div class="small-12 medium-7 columns">
+					<h2>Apps</h2>
+					<p>
+						Start as a newbie with our ready-to-use apps, learn to code through easy visual programming and gradually become a robot wizard developing your own social robot apps. OPSORO is an open platform and community that grows with you!
+					</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="small-12 medium-5 columns">
+					<!-- <img src="/media/apps/robot_configurator.png" alt="apps" /> -->
+
+					<div class="placeholder" data-large="/media/apps/robot_configurator.png">
+					  <img src="/media/apps/robot_configurator_pre.png" class="img-small" alt="apps">
+					  <div style="padding-bottom: 66.6%;"></div>
+					</div>
+				</div>
+				<div class="small-12 medium-7 columns">
+					<h2 class="color_red">Robot configurator</h2>
+					<p>
+						Create a virtual twin for the robot that you have build to allow perfect syncing between the physical and digital world.
+					</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="small-12 medium-5 columns">
+					<!-- <img src="/media/apps/expression_configurator.png" alt="apps" /> -->
+
+					<div class="placeholder" data-large="/media/apps/expression_configurator.png">
+					  <img src="/media/apps/expression_configurator_pre.png" class="img-small" alt="apps">
+					  <div style="padding-bottom: 66.6%;"></div>
+					</div>
+				</div>
+				<div class="small-12 medium-7 columns">
+					<h2 class="color_red">Expression configurator</h2>
+					<p>
+						Add new emotions by adjusting the expression of your robot with a matching emoticon and use it later in the other apps.
+					</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="small-12 medium-5 columns">
+					<!-- <img src="/media/apps/social_script.png" alt="apps" /> -->
+
+					<div class="placeholder" data-large="/media/apps/social_script.png">
+					  <img src="/media/apps/social_script_pre.png" class="img-small" alt="apps">
+					  <div style="padding-bottom: 66.6%;"></div>
+					</div>
+				</div>
+				<div class="small-12 medium-7 columns">
+					<h2 class="color_orange">Social script</h2>
+					<p>
+						Create, share and play social scripts combining text to speech, facial expressions and sounds.
+					</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="small-12 medium-5 columns">
+					<!-- <img src="/media/apps/blockly.png" alt="apps" /> -->
+
+					<div class="placeholder" data-large="/media/apps/blockly.png">
+					  <img src="/media/apps/blockly_pre.png" class="img-small" alt="apps">
+					  <div style="padding-bottom: 66.6%;"></div>
+					</div>
+				</div>
+				<div class="small-12 medium-7 columns">
+					<h2 class="color_blue">Blockly</h2>
+					<p>
+						Let your robot become an interactive piece of art and learn the basics trough our visual programmer.
+					</p>
+				</div>
+			</div>
+
+
+		</div>
+	</section>
+
+{% endblock %}

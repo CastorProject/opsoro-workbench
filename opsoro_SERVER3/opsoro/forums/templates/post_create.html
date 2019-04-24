@@ -1,0 +1,34 @@
+{% extends "forum_base.html" %}
+
+{% load bootstrap %}
+
+{% block body %}
+    {% include "_forum_breadcrumb.html" %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="btn btn-default btn-xs pull-right" href="{% url "forums:forum" forum.pk %}">Cancel</a>
+            <h3>
+                {{ forum.title }}
+                {% if forum.closed %}<span class="label">closed</span>{% endif %}
+            </h3>
+            <p class="lead">{{ forum.description }}</p>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="small-12 large-8 large-offset-2 columns">
+                    <form action="{% url "forums:post_create" forum.pk %}" method="POST" class="form form-horizontal">
+                        <legend>Create Post</legend>
+                        {% csrf_token %}
+                        <fieldset>
+                            {{ form }}
+                        </fieldset>
+                        <div class="form-actions pull-right">
+                            <button class="btn btn-primary" type="submit">Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

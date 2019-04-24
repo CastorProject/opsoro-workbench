@@ -1,0 +1,31 @@
+{% extends "site_base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block styles %}
+	{{ block.super }}
+	<link rel="stylesheet" href="{% static 'css/opsoroPlay.min.css' %}"/>
+{% endblock %}
+
+{% block topbar_base %}
+	{% include "_header_main.html" %}
+	{% include "_header_play.html" %}
+{% endblock %}
+
+{% block body %}
+	<div class="actionbar {% block actionbar_class %}{% endblock %} row">{% block app_toolbar %}{% endblock %}</div>
+	<div id="errors"></div>
+	<div class="sidebar_left">{% block sidebar_left %}{% endblock %}</div>
+
+	<div class="app_body">{% block app_body %}{% endblock %}</div>
+
+	<div class="sidebar_right">{% block sidebar_right %}{% endblock %}</div>
+
+{% endblock %}
+
+
+{% block footer %}
+	{% include "_feedback_submit.html" %}
+	{% include "_footer_simple.html" %}
+{% endblock %}

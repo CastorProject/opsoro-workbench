@@ -1,0 +1,46 @@
+
+{% load humanize %}
+{% load thumbnail %}
+{% load forums_tags %}
+{% load bootstrap %}
+
+{% if user_info %}
+  {% if by %}
+    by <a href="{# url user_page user_info.id #}">{{ user_info.username }}</a>
+    {% if user_info.is_staff or user_info.username == 'OPSORO'%}
+      <span title="{{ _('Verified user') }}" class="verified fa fa-check-circle"></span>
+      <!-- <img class="app-opsoro" src="/static/images/logo/opsoro_icon_medium.png" width="20px"> -->
+    {% endif %}
+  {% else %}
+    {% if user_info.profile.avatar %}
+      <img class="pull-left media-object thumbnail img-rounded" src="{{ user_info.profile.avatar|thumbnail_url:'avatar' }}" alt="{{ user_info.username }}" />
+    {% endif %}
+    {% if break %}
+      <div style="clear: both;"></div>
+      <div class="media-object">
+    {% else %}
+      <div class="media-body">
+    {% endif %}
+      <h4 class="media-heading">
+        <a href="{# url user_page user_info.pk #}">{{ user_info.username }}</a>
+        {% if user_info.is_staff or user_info.username == 'OPSORO' %}
+          <span title="{{ _('Verified user') }}" class="verified fa fa-check-circle"></span>
+          <!-- <img class="app-opsoro" src="/static/images/logo/opsoro_icon_medium.png" width="20px"> -->
+        {% endif %}
+      </h4>
+      {# @@@ points, stars, level #}
+      {{ user_info.post_count.all.0.count|intcomma }} post{{ user_info.post_count.all.0.count|pluralize }}
+    </div>
+  {% endif %}
+
+{% else %}
+Unknown
+{% endif %}
+
+<!--
+<a class="thumb media-object" href="{# url user_page post.author.pk #}">
+    <img src="{{ post.author.profile.avatar|thumbnail_url:'avatar-large' }}" />
+</a>
+<a href="{# url user_page post.author.pk #}">{{ post.author.username }}</a><br />
+{# @@@ points, stars, level #}
+{{ post.author.post_count.all.0.count|intcomma }} post{{ post.author.post_count.all.0.count|pluralize }} -->

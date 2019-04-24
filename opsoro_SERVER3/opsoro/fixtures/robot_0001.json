@@ -1,0 +1,145 @@
+[
+  {
+    "model": "robot.module",
+    "pk": 1,
+    "fields": {
+      "name": "turn",
+      "svg": "modules/svg/turn.svg",
+      "javascript": "modules/js/turn.js",
+      "width": 57,
+      "height": 19
+    }
+  },
+  {
+    "model": "robot.module",
+    "pk": 2,
+    "fields": {
+      "name": "eye",
+      "svg": "modules/svg/eye.svg",
+      "javascript": "modules/js/eye.js",
+      "width": 70,
+      "height": 48
+    }
+  },
+  {
+    "model": "robot.module",
+    "pk": 3,
+    "fields": {
+      "name": "mouth",
+      "svg": "modules/svg/mouth.svg",
+      "javascript": "modules/js/mouth.js",
+      "width": 121,
+      "height": 38
+    }
+  },
+  {
+    "model": "robot.module",
+    "pk": 4,
+    "fields": {
+      "name": "heart",
+      "svg": "modules/svg/heart.svg",
+      "javascript": "modules/js/heart.js",
+      "width": 121,
+      "height": 45
+    }
+  },
+  {
+    "model": "robot.module",
+    "pk": 5,
+    "fields": {
+      "name": "speaker",
+      "svg": "modules/svg/speaker.svg",
+      "javascript": "modules/js/speaker.js",
+      "width": 57,
+      "height": 47
+    }
+  },
+    {
+    "model": "robot.grid",
+    "pk": 1,
+    "fields": {
+      "name": "A4 (portrait)",
+      "width": 205,
+      "height": 293,
+      "svg": "grids/svg/A4_portrait.svg"
+    }
+  },
+  {
+    "model": "robot.grid",
+    "pk": 2,
+    "fields": {
+      "name": "Empty",
+      "width": 205,
+      "height": 293,
+      "svg": ""
+    }
+  },
+    {
+    "model": "robot.grid",
+    "pk": 1,
+    "fields": {
+      "name": "A4 (portrait)",
+      "width": 205,
+      "height": 293,
+      "svg": "grids/svg/A4_portrait.svg"
+    }
+  },
+  {
+    "model": "robot.grid",
+    "pk": 2,
+    "fields": {
+      "name": "Empty",
+      "width": 205,
+      "height": 293,
+      "svg": ""
+    }
+  },
+    {
+    "model": "robot.arm",
+    "pk": 1,
+    "fields": {
+      "name": "Small servo arm",
+      "width": 32,
+      "height": 7,
+      "x_offset": 0,
+      "y_offset": 0,
+      "svg": "arms/svg/small_arm_2.svg"
+    }
+  },
+  {
+    "model": "robot.arm",
+    "pk": 2,
+    "fields": {
+      "name": "Invader eyebrow",
+      "width": 55,
+      "height": 10,
+      "x_offset": 0,
+      "y_offset": 1,
+      "svg": "arms/svg/invader_eyebrow.svg"
+    }
+  },
+  {
+    "model": "robot.arm",
+    "pk": 3,
+    "fields": {
+      "name": "Invader mouth",
+      "width": 40,
+      "height": 10,
+      "x_offset": 11,
+      "y_offset": 0,
+      "svg": "arms/svg/invader_mouth.svg"
+    }
+  },
+  {
+    "model": "robot.skin",
+    "pk": 1,
+    "fields": {
+      "name": "Invader",
+      "width": 220,
+      "height": 140,
+      "x_offset": -7,
+      "y_offset": 48,
+      "svg": "skins/svg/invader_skin.svg"
+    }
+  }
+]

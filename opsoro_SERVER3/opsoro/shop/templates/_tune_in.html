@@ -1,0 +1,19 @@
+<section id="tune-in" class="bar row collapse">
+  <div class="large-6 large-offset-3 columns end newsletter">
+    <h1>Let me know when I can order on Kickstarter! :)</h1>
+    <form action="{% url 'shop:newsletter' %}" method="post">
+      {% csrf_token %}
+      <div class="email-form">
+        <div class="email-input">
+          {{ newsletter_form.email}}
+        </div>
+        <div class="email-send">
+          <button class="btn-envelope" type="submit" value=""><i class="fa fa-envelope"></i></button>
+        </div>
+      </div>
+    </form>
+
+    <div class="response text-center"></div>
+  </div>
+
+</section>

@@ -1,0 +1,36 @@
+{% extends "account/email/email_base.html" %}
+
+{% load i18n %}
+
+{% block title %}{{ _('Pre-order confirmation') }}{% endblock %}
+
+{% block emoji_code %}1f60e{% endblock %}
+
+{% block title_h1 %}{{ _('Your pre-order has been placed!') }}{% endblock %}
+
+{% block content %}
+<p style="color: #555; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: justify; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;" align="justify">
+<b>{{ _('Hi') }}{% if username %} {{ username }}{% endif %}!</b>
+</p>
+<p style="color: #555; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: justify; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;" align="justify">
+  {% blocktrans %}
+  You just placed a pre-order on our website. We will save your name and email address in our database and update you when our crowdfunding campaign will go online. You will get future emails to remind you when you can confirm your order and enjoy early-bird advantages!
+  {% endblocktrans %}
+</p>
+<p style="color: #555; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: justify; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;" align="justify">
+  {% blocktrans %}
+  Even more important than a pre-order confirmation, is the fact that we probably gained a new and early close community member of OPSORO. We will always inform our closest community members first of updates and unique advantages.
+  {% endblocktrans %}
+</p>
+{% endblock %}
+
+{# Use if no button is needed
+  {% block button_link %}{{ password_reset_url }}{% endblock %}
+  {% block button_text %}Reset password{% endblock %}
+#}
+
+{% block button %}{% endblock %}
+
+{% block footer %}
+  {% include "account/email/_email_footer.html" %}
+{% endblock %}

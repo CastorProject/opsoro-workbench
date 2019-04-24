@@ -1,0 +1,25 @@
+<div class="app-container {{ app_class }}">
+  <a href="{{ app_href }}">
+    <div class="app-button background_{{ app_background }}">
+      <span class="app-icon fa {{ app.icon }}"></span>
+
+      <span class="app-label">{{ app.full_name }}</span>
+      <div class="app-banner">
+        {% if opsoro_author %}
+          <img class="app-opsoro" src="/static/images/logo/opsoro_icon_light.png">
+        {% else %}
+          <span class="app-by">by</span> <span class="app-author">{{ app.author }}</span>
+        {% endif %}
+
+        <div class="app-status">
+          <span class="fa fa-cog fa-spin app-active" style="display: none;"></span>
+          <span class="fa fa-lock app-locked" style="display: none;"></span>
+          {% if not online and app.connection == 2 %}<span class="app-beat fa fa-wifi"></span>{% endif %}
+        </div>
+      </div>
+    </div>
+    {% for tag in app.tags %}
+      <span class="app-tag hide">{{ tag }}</span>
+    {% endfor %}
+  </a>
+</div>

@@ -1,0 +1,18 @@
+{
+  "voice_lines": [
+    {
+      "emotion": "neutral",
+      "output": {
+        "type": "tts",
+        "data": "hallo"
+      }
+    },
+    {
+      "emotion": "neutral",
+      "output": {
+        "type": "tts",
+        "data": "oe ist"
+      }
+    }
+  ]
+}

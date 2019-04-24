@@ -1,0 +1,17 @@
+
+<div class="panel panel-default">
+    <div class="panel-heading">Most Active Members</div>
+    {% if most_active_members %}
+        <ul class="list-group media-list">
+            {% for member_count in most_active_members %}
+                <li class="list-group-item media">
+                    {% include "_user_info.html" with user_info=member_count.user %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="panel-body">
+            There are no active members.
+        </div>
+    {% endif %}
+</div>

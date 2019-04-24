@@ -1,0 +1,14 @@
+{% extends "play_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{{ _('Email confirmed') }}{% endblock %}
+
+{% block app_body %}
+<div class="row">
+  <div class="small-12 medium-8 medium-offset-2 columns">
+    <legend>{{ _('Email confirmed') }}</legend>
+    <p>{% blocktrans with email=confirmation.email_address.email %}You have confirmed <b>{{ email }}</b>{% endblocktrans %}</p>
+  </div>
+</div>
+{% endblock %}

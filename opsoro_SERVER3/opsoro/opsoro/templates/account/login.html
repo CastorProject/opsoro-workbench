@@ -1,0 +1,43 @@
+{% extends "play_base.html" %}
+
+{% load account_tags %}
+{% load i18n %}
+{% load bootstrap %}
+
+{% block head_title %}{{ _('Log in') }}{% endblock %}
+
+{% block app_body %}
+<div class="login-form row">
+  <div class="small-12 medium-5 large-4 large-offset-1 columns">
+    {% if ACCOUNT_OPEN_SIGNUP %}
+      {% include "account/_social_login.html" %}
+    {% endif %}
+  </div>
+  <div class="small-12 medium-7 large-6 columns">
+    <legend>{{ _('Login') }}</legend>
+    {% if ACCOUNT_OPEN_SIGNUP %}
+    <p class="login-signup">
+      <small>
+        {% trans "Don't have an account?" %}
+        <strong><a href="{% urlnext 'account_signup' %}">{{ _('Sign up') }}</a></strong>
+      </small>
+    </p>
+    {% endif %}
+    <form method="POST" action="{% url 'account_login' %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data" {% endif %}>
+      {% csrf_token %}
+      {{ form|bootstrap }}
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button type="submit" class="btn btn-primary">{{ _('Log in') }}</button>
+      <a href="{% url 'account_password_reset' %}" class="btn btn-link">{% trans "Forgot your password?" %}</a>
+    </form>
+  </div>
+</div>
+{% endblock %} {% block app_scripts %} {{ block.super }}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#id_username').focus();
+  });
+</script>
+{% endblock %}

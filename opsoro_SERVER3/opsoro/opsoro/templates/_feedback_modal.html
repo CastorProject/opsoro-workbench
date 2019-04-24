@@ -1,0 +1,38 @@
+<button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+</button>
+<h2 id="modalTitle">{{ _('Feedback') }}</h2>
+
+<div id="feedback_modal_content" class="reveal-order-content">
+
+
+  <form id="feedback_form" action="{% url "play:feedback" %}" method="post">
+      {% csrf_token %}
+      <div class="columns">
+        <p>
+          {{ _('Your feedback is highly appreciated. Qualitative feedback might be rewarded!') }}
+        </p>
+          {{ form }}
+          <small id='FeedbackCharCountLabel'></small>
+          <input class="btn btnOrder" type="submit" value="{{ _('Send') }}" />
+      </div>
+  </form>
+
+</div>
+<script type='text/javascript'>
+CharacterCount = function(TextArea,FieldToCount){
+	var myField = document.getElementById(TextArea);
+	var myLabel = document.getElementById(FieldToCount);
+	if(!myField || !myLabel){return false}; // catches errors
+	var MaxChars =  myField.maxLengh;
+	if(!MaxChars){MaxChars =  myField.getAttribute('maxlength') ; }; 	if(!MaxChars){return false};
+	var remainingChars =   MaxChars - myField.value.length
+	myLabel.innerHTML = remainingChars+"/"+MaxChars
+}
+$('#id_text').keydown(function() {
+  setTimeout(function () {
+    CharacterCount('id_text','FeedbackCharCountLabel');
+  }, 100);
+});
+CharacterCount('id_text','FeedbackCharCountLabel');
+</script>

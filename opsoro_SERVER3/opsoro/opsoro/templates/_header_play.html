@@ -1,0 +1,82 @@
+<section id='header_play' class='nav'>
+  <div class="row small-unstack">
+    <div class="shrink columns">
+      <div id="activity">
+        <span id="statusicon">
+          {% block status_icon %}
+            {% if app.active %}
+              <span class="icon fa fa-cog fa-spin"></span> {% else %}
+        <span class="icon fa fa-check-circle"></span> {% endif %} {% endblock %}
+        </span>
+        <p>
+          <span id="status" class="online">
+              {% block status_text %}
+                {% if request.user.is_authenticated %}
+                    {{ _('Welcome') }} {{ user.username }}
+                {% else %}
+                    {{ _('Welcome stranger!') }}
+                {% endif %}
+              {% endblock %}
+            </span>
+          <br/>
+          <span id="comment">
+              {% block status_text_comment %}
+                {% if request.user.is_authenticated %}
+                    {{ _('Beta release') }}
+                {% else %}
+                    <a href="{% url 'account_login' %}" title="{{ _('Sign in') }}">{{ _('Log in') }}</a>
+                {% endif %}
+              {% endblock %}
+          </span>
+        </p>
+      </div>
+    </div>
+
+    {% if index %}
+    <div class="columns search">
+      <input class="hide-for-small-only" id="search" type="text" placeholder="{{ _('Search') }}" />
+    </div>
+    {% else %}
+    <div class="columns"></div>
+    {% endif %}
+
+    <div class="shrink columns">
+      <ul class="">
+        {% if not index %}
+        <li>
+          <a href="{% url 'play:apps' %}" class="action" title="{{ _('Home') }}">
+            <span class="icon fa fa-home"></span>
+          </a>
+        </li>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <li>
+          <a href="{% url 'robot:index' %}" class="action" title="{{ _('Virtual model') }}" onClick="return popupWindow(this, '{{ _('Virtual model') }}');">
+            <span class="icon fa fa-smile-o"></span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'account_settings' %}" class="action" title="{{ _('Profile') }}">
+            <span class="icon fa fa-user"></span>
+          </a>
+        </li>
+        <li>
+          <a id="account_logout" href="{% url 'account_logout' %}" class="action" title="{{ _('Logout') }}">
+            <span class="icon fa fa-sign-out"></span>
+          </a>
+        </li>
+        <form id="accountLogOutForm" style="display: none;" action="{% url 'account_logout' %}" method="POST">
+          {% csrf_token %}
+        </form>
+        {% else %}
+        <li>
+          <a href="{% url 'account_login' %}" class="action" title="{{ _('Sign in') }}">
+            <span class="icon fa fa-sign-in"></span>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+
+</section>

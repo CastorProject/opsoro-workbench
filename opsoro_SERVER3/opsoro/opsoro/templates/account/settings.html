@@ -1,0 +1,66 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load bootstrap %}
+{% load thumbnail %}
+
+{% block body_class %}account account-settings{% endblock %}
+
+{% block head_title %}{{ _('Account') }}{% endblock %}
+
+{% block acc_body %}
+<div class="row">
+  <div class="small-12 large-8 large-offset-2 columns">
+    <form method="POST" action="{% url 'account_settings' %}" enctype="multipart/form-data">
+      <legend>{{ _('Account') }}</legend>
+      <!-- <div class="emoji-banner"><img src="{% static 'libraries/emojione/png/64/1f913.png' %}"></img></div> -->
+      {% csrf_token %}
+      <div class="row collapse">
+        {% if user.profile.avatar %}
+        <div class="small-12 medium-4 text-center columns">
+          <img class="media-object thumbnail img-rounded" src="{{ user.profile.avatar|thumbnail_url:'avatar-large' }}" alt="{{ user.username }}" />
+        </div>
+        {% endif %}
+        <div class="small-12 medium-8 columns">
+          {{ form.avatar }}
+          {{ form.avatar_clear }}<label for="id_avatar_clear">Remove avatar</label>
+        </div>
+        <div class="small-12 columns">
+          {{ form.username }}
+        </div>
+        <div class="small-12 medium-5 columns">
+          {{ form.first_name }}
+        </div>
+        <div class="small-12 medium-7 columns">
+          {{ form.last_name }}
+        </div>
+        <div class="small-12 columns">
+          {{ form.email }}
+        </div>
+        <div class="small-12 columns">
+          {{ form.address }}
+        </div>
+        <div class="small-12 medium-5 columns">
+          {{ form.postal }}
+        </div>
+        <div class="small-12 medium-7 columns">
+          {{ form.city }}
+        </div>
+        <div class="small-12 columns">
+          {{ form.country }}
+        </div>
+        <div class="small-12 columns">
+          {{ form.birth_date }}
+        </div>
+        <div class="small-12 columns">
+          {{ form.captcha }}
+        </div>
+        <div class="small-12 columns">
+          <button class="btn btn-primary" type="submit">{{ _('Save') }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

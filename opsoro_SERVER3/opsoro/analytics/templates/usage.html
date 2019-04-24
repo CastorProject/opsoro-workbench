@@ -1,0 +1,161 @@
+{% extends "site_base.html" %}
+{% load static %}
+
+{% block default_app_styles %}
+<link href="{% static 'css/opsoroForum.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block head_title %}Statistics{% endblock %}
+{% block body_class %}statistics{% endblock %}
+{% block subnav %}{% endblock %}
+
+{% block body %}
+
+<div class="row">
+  <div class="small-12 columns">
+    <canvas id="usageChart" width="100" height="50"></canvas>
+  </div>
+  <div class="small-12 columns">
+    <div class="panel panel-default">
+      <div class="panel-heading">New usages</div>
+      {% if usages %}
+      <table class="table table-striped">
+        <tr>
+          <th>cpu</th>
+          <th>virt_mem</th>
+          <th>swap_mem</th>
+          <th>disk</th>
+          <th>date</th>
+        </tr>
+        {% for usage in usages %}
+        <tr>
+          <td>{{ usage.cpu }}</td>
+          <td>{{ usage.virt_mem }}</td>
+          <td>{{ usage.swap_mem }}</td>
+          <td>{{ usage.disk }}</td>
+          <td>{{ usage.timestamp }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% else %}
+      <div class="panel-body">
+        There are no new usages.
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block default_app_scripts %}
+<!-- <script src="{% block jquery_src %}{% static "pinax/js/jquery.js" %}{% endblock %}"></script> -->
+<!-- <script src="{% static "js/bootstrap.min.js" %}"></script> -->
+<script src="{% static 'libraries/chart/js/Chart.min.js' %}"></script>
+{% block extra_script %}
+{% endblock %}
+<script>
+
+  var cpudata = {{ cpudata|safe }};
+  var virtmemdata = {{ virtmemdata|safe }};
+  var swapmemdata = {{ swapmemdata|safe }};
+  var diskdata = {{ diskdata|safe }};
+  var timedata = {{ timedata|safe }};
+
+  // backgroundColor: [
+  //   'rgba(255, 99, 132, 0.2)',
+  //   'rgba(54, 162, 235, 0.2)',
+  //   'rgba(255, 206, 86, 0.2)',
+  //   'rgba(75, 192, 192, 0.2)',
+  //   'rgba(153, 102, 255, 0.2)',
+  //   'rgba(255, 159, 64, 0.2)'
+  // ],
+  // borderColor: [
+  //   'rgba(255,99,132,1)',
+  //   'rgba(54, 162, 235, 1)',
+  //   'rgba(255, 206, 86, 1)',
+  //   'rgba(75, 192, 192, 1)',
+  //   'rgba(153, 102, 255, 1)',
+  //   'rgba(255, 159, 64, 1)'
+  // ],
+
+  var ctx = document.getElementById("usageChart").getContext('2d');
+  var usageChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: timedata,
+      datasets: [{
+        label: 'CPU 0',
+        data: cpudata[0],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+        ],
+        borderWidth: 1
+      },{
+        label: 'CPU 1',
+        data: cpudata[1],
+        backgroundColor: [
+          'rgba(54, 162, 235, 0.2)',
+        ],
+        borderColor: [
+          'rgba(54, 162, 235, 1)',
+        ],
+        borderWidth: 1
+      },{
+        label: 'virt mem',
+        data: virtmemdata,
+        backgroundColor: [
+          'rgba(255, 206, 86, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255, 206, 86, 1)',
+        ],
+        borderWidth: 1
+      },{
+        label: 'swapmemdata',
+        data: swapmemdata,
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      },{
+        label: 'Disk',
+        data: diskdata,
+        backgroundColor: [
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }
+      ]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+</script>
+{% endblock %}
+
+{% block footer %}
+{% include "_feedback_submit.html" %}
+{% include "_footer_simple.html" %}
+{% endblock %}

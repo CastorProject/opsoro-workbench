@@ -1,0 +1,104 @@
+[
+  {
+    "model": "robot.dof",
+    "pk": 1,
+    "fields": {
+      "module": 1,
+      "name": "rotation"
+    }
+  },
+  {
+    "model": "robot.dof",
+    "pk": 2,
+    "fields": {
+      "module": 2,
+      "name": "horizontal"
+    }
+  },
+  {
+    "model": "robot.dof",
+    "pk": 3,
+    "fields": {
+      "module": 2,
+      "name": "vertical"
+    }
+  },
+  {
+    "model": "robot.dof",
+    "pk": 4,
+    "fields": {
+      "module": 2,
+      "name": "lid"
+    }
+  },
+  {
+    "model": "robot.dof",
+    "pk": 5,
+    "fields": {
+      "module": 3,
+      "name": "rotation left"
+    }
+  },
+  {
+    "model": "robot.dof",
+    "pk": 6,
+    "fields": {
+      "module": 3,
+      "name": "rotation right"
+    }
+  },
+  {
+    "model": "robot.dofvalue",
+    "pk": 1,
+    "fields": {
+      "tags": "*",
+      "index": -1,
+      "value": 0.0
+    }
+  },
+  {
+    "model": "robot.dofvalue",
+    "pk": 2,
+    "fields": {
+      "tags": "eyebrow right",
+      "index": -1,
+      "value": -0.5
+    }
+  },
+  {
+    "model": "robot.dofvalue",
+    "pk": 3,
+    "fields": {
+      "tags": "eyebrow left",
+      "index": -1,
+      "value": 0.5
+    }
+  },
+  {
+    "model": "robot.dofvalue",
+    "pk": 4,
+    "fields": {
+      "tags": "eye lid",
+      "index": -1,
+      "value": 0.7
+    }
+  },
+  {
+    "model": "robot.dofvalue",
+    "pk": 5,
+    "fields": {
+      "tags": "mouth left",
+      "index": -1,
+      "value": 0.5
+    }
+  },
+  {
+    "model": "robot.dofvalue",
+    "pk": 6,
+    "fields": {
+      "tags": "mouth right",
+      "index": -1,
+      "value": -0.5
+    }
+  }
+]

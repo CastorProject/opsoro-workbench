@@ -1,0 +1,21 @@
+{
+  "voice_lines": [
+    {
+      "emotion": "sleep",
+      "output": {
+        "type": "tts",
+        "data": "I  am sleepy"
+      }
+    },
+    {
+      "emotion": "surprised",
+      "output": {
+        "type": "wav",
+        "data": {
+          "url": "/media/sounds/Aww.wav",
+          "name": "Ooh"
+        }
+      }
+    }
+  ]
+}

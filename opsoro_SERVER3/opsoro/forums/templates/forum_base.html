@@ -1,0 +1,23 @@
+{% extends "site_base.html" %}
+{% load static %}
+{% block default_app_styles %}
+  <link href="{% static "css/opsoroForum.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block head_title %}Forum{% endblock %}
+{% block body_class %}forums{% endblock %}
+
+{% block subnav %}
+{% endblock %}
+
+{% block default_app_scripts %}
+    <!-- <script src="{% block jquery_src %}{% static "pinax/js/jquery.js" %}{% endblock %}"></script> -->
+    <!-- <script src="{% static "js/bootstrap.min.js" %}"></script> -->
+    <!-- <script src="{% static "pinax/js/theme.js" %}"></script> -->
+    {% block extra_script %}{% endblock %}
+{% endblock %}
+
+{% block footer %}
+	{% include "_feedback_submit.html" %}
+	{% include "_footer_simple.html" %}
+{% endblock %}

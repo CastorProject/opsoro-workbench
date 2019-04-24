@@ -1,0 +1,25 @@
+{% extends "account/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block body_class %}account account-delete{% endblock %}
+
+{% block head_title %}{{ _('Delete Account') }}{% endblock %}
+
+{% block acc_body %}
+<div class="row">
+  <div class="small-12 large-8 large-offset-2 columns text-center">
+    <legend>{{ _('Delete Account') }}</legend>
+    <div class="emoji-banner"><img src="{% static 'libraries/emojione/png/64/1f622.png' %}"></img></div>
+    <p>{% blocktrans %}If you go ahead and delete your account, your information will be <b>expunged within {{ ACCOUNT_DELETION_EXPUNGE_HOURS }} hours</b>.{% endblocktrans %}</p>
+  </div>
+  <div class="small-12 medium-10 medium-offset-1 large-6 large-offset-3 columns">
+    <form method="post" action="{% url "account_delete" %}" autocapitalize="off">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">{{ _('Delete My Account') }}</button>
+    </form>
+  </div>
+  <div class="small-12 columns"></div>
+</div>
+{% endblock %}

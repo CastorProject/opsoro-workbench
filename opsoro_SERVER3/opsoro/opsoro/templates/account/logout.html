@@ -1,0 +1,20 @@
+{% extends "play_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{{ _('Log out') }}{% endblock %}
+
+{% block app_body %}
+<div class="row">
+  <div class="small-4 small-offset-4 columns text-center">
+    <form method="POST" action="{% url 'account_logout' %}">
+      <legend>{{ _('Log out') }}</legend>
+      <fieldset>
+        {% csrf_token %}
+        <p>{% trans "Are you sure you want to log out?" %}</p>
+        <button type="submit" class="btn btn-primary">{{ _('Log out') }}</button>
+      </fieldset>
+    </form>
+  </div>
+</div>
+{% endblock %}

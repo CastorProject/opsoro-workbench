@@ -1,0 +1,66 @@
+{% load static %}
+<footer class="full_width background_gray_darker">
+  <section class=''>
+    <div class="row collapse" data-equalizer="footer">
+      <div class="small-12 medium-6 large-3 columns footer-col" data-equalizer-watch="footer">
+        <div>
+          <h1>Contact</h1>
+          <ul>
+            <li>Marksesteenweg 58</li>
+            <li>8500 Kortrijk, Belgium</li>
+            <li></li>
+            <li><a href="mailto:info@opsoro.be">info@opsoro.be</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="small-12 medium-6 large-3 columns footer-col" data-equalizer-watch="footer">
+        <div>
+          <h1>opsoro</h1>
+          <ul>
+            <li><a href="{% url 'home' %}#products">Pre-order</a></li>
+            <li><a href="https://play.opsoro.be/" target="_blank">Play online</a></li>
+            <li><a href="https://wiki.opsoro.be/" target="_blank">Wiki</a></li>
+            <li><a href="/forum" target="_blank">Forum</a></li>
+            <!-- <li><a href="https://docs.opsoro.be/" target="_blank">Documentation</a></li> -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="small-12 medium-6 large-3 columns footer-col" data-equalizer-watch="footer">
+        <div>
+          <h1>community</h1>
+          <ul>
+            <li></li>
+            <!-- <li><a href="https://forum.opsoro.be" target="_blank">Forum</a></li> -->
+          </ul>
+
+          <a href="https://github.com/OPSORO" target="_blank" class="btn-social background_github fa fa-github-alt"></a>
+          <a href="https://www.facebook.com/OPSORO" target="_blank" class="btn-social background_facebook fa fa-facebook"></a>
+          <a href="https://twitter.com/opsoro" target="_blank" class="btn-social background_twitter fa fa-twitter"></a>
+          <a href="https://www.instagram.com/opsoro_official/" target="_blank" class="btn-social background_instagram fa fa-instagram"></a>
+
+        </div>
+      </div>
+      <div class="small-12 medium-6 large-3 columns footer-col" data-equalizer-watch="footer">
+        <div>
+          <h1>newsletter</h1> Subscribe to our newsletter
+          <form action="{% url 'shop:newsletter' %}" method="post">
+            {% csrf_token %}
+            <div class="email-form">
+              <div class="email-input">
+                {{ newsletter_form.email}}
+              </div>
+              <div class="email-send">
+                <button class="btn-envelope" type="submit" value=""><i class="fa fa-envelope"></i></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="logo">
+    <img src='{% static 'images/logo/opsoro_icon_medium.png' %}'><br>
+    <p>Copyright &copy; {% now "Y" %} Opsoro. All rights reserved.</p>
+  </section>
+</footer>

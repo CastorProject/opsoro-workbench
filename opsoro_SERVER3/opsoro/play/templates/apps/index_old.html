@@ -1,0 +1,56 @@
+{% extends "site_base.html" %}
+
+{% block head_title %}{{ _('Apps') }}{% endblock %}
+
+{% block body_class %}apps{% endblock %}
+
+{% block app_body %}
+
+	<section class="apps">
+		<div class="">
+			{% if available_app_list %}
+				<div class="apps_available">
+					{% for app in available_app_list %}
+						<div class='app_container large-2 medium-3 small-6 columns'>
+							<a href="{% url 'play:app' app.name_lower  %}" >
+								<div class="app_button">
+									<div class="app_icon {{ app.icon }}"></div>
+									<div class="app_banner" style="background-color: {{ app.color }}"></div>
+								</div>
+								<div class="app_label">{{ app.name }}</div>
+							</a>
+						</div>
+					{% endfor %}
+				</div>
+			{% else %}
+				<h2>{{ _('No apps available.') }}</h2>
+			{% endif %}
+
+			{% if future_app_list %}
+				<div class="apps_future">
+					{% for app in future_app_list %}
+						<div class='app_container large-2 medium-3 small-6 columns'>
+							<a href="{% if user.is_staff or app.author == user %}{% url 'play:app' app.name_lower %}{% else %}#{% endif %}">
+								<div class="app_button">
+									<div class="app_icon {{ app.icon }}"></div>
+									<!-- <div class="ribbon large_ribbon">
+										<span>Coming
+											{{ app.date_publish|date:"d/m" }}</span>
+									</div> -->
+									<div class="app_banner"></div>
+								</div>
+								<div class="app_label">{{ app.name }}</div>
+							</a>
+						</div>
+					{% endfor %}
+				</div>
+			{% endif %}
+
+		</div>
+	</section>
+
+{% endblock %}
+{% block app_toolbar %}{% endblock %}
+
+{% block sidebar_left %}{% endblock %}
+{% block sidebar_right %}{% endblock %}

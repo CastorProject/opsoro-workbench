@@ -1,0 +1,47 @@
+{% extends "play_base.html" %}
+
+{% load static %}
+{% load account_tags %}
+{% load i18n %}
+{% load bootstrap %}
+
+{% block head_title %}{{ _('Sign up') }}{% endblock %}
+
+{% block app_body %}
+<div class="row">
+  <div class="small-12 medium-5 large-4 large-offset-1 columns">
+    {% include "account/_social_login.html" %}
+  </div>
+  <div class="small-12 medium-7 large-6 columns">
+    <legend>{{ _('Sign up') }}</legend>
+    <div class="emoji-banner"><img src="{% static 'libraries/emojione/png/64/1f603.png' %}"></img></div>
+    <p class="login-signup">
+      <small>
+        {% trans "Already have an account?" %}
+        <strong><a href="{% urlnext 'account_login' %}">{{ _('Log in') }}</a></strong>
+      </small>
+    </p>
+    <form id="signup_form" method="post" action="{% url 'account_signup' %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data" {% endif %}>
+      {% csrf_token %}
+      {{ form|bootstrap }}
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button type="submit" class="btn btn-primary">{{ _('Sign up') }}</button>
+    </form>
+
+  </div>
+  <!-- <div class="col-md-4">
+            {% include "account/_signup_sidebar.html" %}
+        </div> -->
+</div>
+{% endblock %}
+
+{% block app_scripts %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#id_username').focus();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "play_base.html" %}
+{% load static %}
+
+{% block head_title %}{{ app.name_lower }}{% endblock %}
+{% block body_class %}app{% endblock %}
+{% load static %}
+
+{% block default_app_styles %}
+	{% if app %}
+		<link rel="stylesheet" type="text/css" href="{% static 'apps/' %}{{ app.formatted_name }}/app.css"/>
+	{% endif %}
+{% endblock %}
+
+{% block app_head %}{% endblock %}
+
+{% block actionbar_class %}background_{{ app.color }}{% endblock %}
+
+{% block status_text_comment %}{{ app.name }}{% endblock %}
+
+{% block app_body %}
+<div class="row">
+	<div id="robot_frame" class="show-for-large shrink columns">
+
+	</div>
+	<div class="app-content-placeholder columns">
+		<span class="fa fa-spinner fa-spin"></span>
+	</div>
+	<div class="app-content columns" style="display: none;">
+		{% block app_content %}{% endblock %}
+	</div>
+</div>
+{% endblock %}
+
+{% block default_app_scripts %}
+	<script>
+	  if (window.innerWidth >= 1024) {
+	    $('#robot_frame').html('<iframe height="320" width="230" src="{% url 'robot:simple' %}"></iframe>');
+	  // } else if ((window.screen.availWidth < 799) && (window.screen.availWidth >= 480)) {
+	    // $('#content').html('<iframe src="http://www.stackoverflow.com" id="frame2" style="display:block"></iframe>');
+	  } else {
+	  }
+	</script>
+	{% if app %}
+		<script src="{% static 'apps/' %}{{ app.formatted_name }}/app.js"></script>
+	{% endif %}
+{% endblock %}

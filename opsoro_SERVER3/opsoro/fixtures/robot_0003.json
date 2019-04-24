@@ -1,0 +1,188 @@
+[
+  {
+    "model": "robot.robot",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "name": "Starter Kit Robot",
+      "token": "1bc83739-b197-4ea3-8e0e-7009e20ca3e4",
+      "dofs": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "robot.modulelink",
+    "pk": 1,
+    "fields": {
+      "robot": 1,
+      "module": 1,
+      "name": "eyebrow left",
+      "x": 18,
+      "y": 11,
+      "rotation": 0
+    }
+  },
+  {
+    "model": "robot.modulelink",
+    "pk": 2,
+    "fields": {
+      "robot": 1,
+      "module": 1,
+      "name": "eyebrow right",
+      "x": 8,
+      "y": 11,
+      "rotation": 180
+    }
+  },
+  {
+    "model": "robot.modulelink",
+    "pk": 3,
+    "fields": {
+      "robot": 1,
+      "module": 2,
+      "name": "left",
+      "x": 18,
+      "y": 16,
+      "rotation": 0
+    }
+  },
+  {
+    "model": "robot.modulelink",
+    "pk": 4,
+    "fields": {
+      "robot": 1,
+      "module": 2,
+      "name": "right",
+      "x": 8,
+      "y": 16,
+      "rotation": 0
+    }
+  },
+  {
+    "model": "robot.modulelink",
+    "pk": 5,
+    "fields": {
+      "robot": 1,
+      "module": 3,
+      "name": "",
+      "x": 13,
+      "y": 22,
+      "rotation": 0
+    }
+  },
+  {
+    "model": "robot.modulelink",
+    "pk": 6,
+    "fields": {
+      "robot": 1,
+      "module": 5,
+      "name": "",
+      "x": 13,
+      "y": 28,
+      "rotation": 0
+    }
+  },
+  {
+    "model": "robot.modulelink",
+    "pk": 7,
+    "fields": {
+      "robot": 1,
+      "module": 4,
+      "name": "",
+      "x": 14,
+      "y": 34,
+      "rotation": 0
+    }
+  },
+  {
+    "model": "robot.gridlink",
+    "pk": 1,
+    "fields": {
+      "robot": 1,
+      "grid": 1
+    }
+  },
+  {
+    "model": "robot.expression",
+    "pk": 1,
+    "fields": {
+      "robot": 1,
+      "name": "smile",
+      "symbol_code": "1f642",
+      "short_code": ":slight_smile:",
+      "poly_index": 1,
+      "dofs": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "robot.dofservo",
+    "pk": 1,
+    "fields": {
+      "servo_pin": -1,
+      "servo_mid": 1500,
+      "servo_min": 0,
+      "servo_max": 0
+    }
+  },
+  {
+    "model": "robot.dofservo",
+    "pk": 2,
+    "fields": {
+      "servo_pin": -1,
+      "servo_mid": 1500,
+      "servo_min": 0,
+      "servo_max": 0
+    }
+  },
+  {
+    "model": "robot.dofservo",
+    "pk": 3,
+    "fields": {
+      "servo_pin": -1,
+      "servo_mid": 1500,
+      "servo_min": 0,
+      "servo_max": 0
+    }
+  },
+  {
+    "model": "robot.dofservo",
+    "pk": 4,
+    "fields": {
+      "servo_pin": -1,
+      "servo_mid": 1500,
+      "servo_min": -300,
+      "servo_max": 300
+    }
+  },
+  {
+    "model": "robot.dofservo",
+    "pk": 5,
+    "fields": {
+      "servo_pin": -1,
+      "servo_mid": 1500,
+      "servo_min": 0,
+      "servo_max": 0
+    }
+  },
+  {
+    "model": "robot.dofservo",
+    "pk": 6,
+    "fields": {
+      "servo_pin": -1,
+      "servo_mid": 1500,
+      "servo_min": 0,
+      "servo_max": 0
+    }
+  }
+]
