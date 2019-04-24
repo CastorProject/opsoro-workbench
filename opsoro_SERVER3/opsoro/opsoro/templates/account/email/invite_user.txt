@@ -1,9 +1,0 @@
-{% load i18n %}
-
-{{ _('Personal invitation') }}
-
-{% blocktrans with site_name=current_site.name %}
-You have been selected to be one of the first users to try out the {{ site_name }} platform!
-
-To get early access and explore our amazing platform, you can click this link: {{ signup_url }}.
-{% endblocktrans %}

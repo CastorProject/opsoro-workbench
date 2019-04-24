@@ -1,1 +1,0 @@
-{% load i18n %}{{ _('Pre-order confirmation') }}
