@@ -1,0 +1,3 @@
+[submodule "opsoro_play"]
+	path = opsoro_play
+	url = https://github.com/Aduen/opsoro_play.git
