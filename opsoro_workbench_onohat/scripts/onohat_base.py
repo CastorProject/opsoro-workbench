@@ -135,7 +135,7 @@ class OnohatRos(object):
 
 	"""main loop node"""
 	def main_loop(self):
-		
+		#hardware handler
 		
 		self.rate.sleep()
 
