@@ -13,9 +13,12 @@ from dynamixel_workbench_msgs.srv import JointCommand
 
 
 class DmxServo(Actuator):
+    '''
+    Dynamixel servo class: Inherits the base Actuator class
+    '''
     def __init__(self):
         super(DmxServo, self).__init__()
-        print self.info
+        #set custom dynamixel motor info 
         self.info = {
 					 "ros_label"   : "head",
 				     "controller"  : "/dmx_controller",
@@ -25,13 +28,8 @@ class DmxServo(Actuator):
 				     "id" 		   : 0,
                      "component_id": 0
 				    }
-
-        self.set_info(self.info)
-
-        self.set_topics()
-
-        self.set_services()
-
+        #deploy actuator
+        self.deploy_actuator()
 
     def set_motor_id(self, id):
         '''
@@ -46,6 +44,9 @@ class DmxServo(Actuator):
 
 
 class OnohatServo(Actuator):
+    '''
+    Onohat servo class: inherits the base Actuator class
+    '''
     def __init__(self):
         super(OnohatServo, self).__init__()
         self.info = {
@@ -58,11 +59,8 @@ class OnohatServo(Actuator):
                      "component_id": 0
 				    }
 
-        self.set_info(self.info)
-
-        self.set_topics()
-
-        self.set_services()
+        #deploy actuator
+        self.deploy_actuator()
 
 
     def set_motor_id(self, id):
@@ -74,24 +72,6 @@ class OnohatServo(Actuator):
             return True
         else:
             False
-'''
-class OnohatServo(Actuator):
-	"""docstring for OnohatServo"""
-	def __init__(self, arg):
-		super (OnohatServo, self).__init__()
-
-		self.info = {
-					 "ros_label"  : "/actuator",
-				     "controller" : "/base_controller",
-					 "actuation"  : "electrical",
-					 "motion"	  : "rotatory",
-				     "hardware"   : "generic",
-				     "id" 		  : 0
-				    }
-
-'''
-
-
 
 
 if __name__ == '__main__':
