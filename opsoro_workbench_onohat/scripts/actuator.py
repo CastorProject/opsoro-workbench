@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#general library import
 import rospy
 import time
 # create base msg and services
@@ -6,16 +7,12 @@ from dynamixel_workbench_msgs.srv import JointCommand
 from dynamixel_workbench_msgs.srv import TorqueEnable
 from sensor_msgs.msg import JointState
 
-#from opsoro_workbench_onohat.srv import ServoCommand
-
-#base actuator class (for servo, dc motor)
 class Actuator(object):
+	'''
+	Actuator Class: Base class to inherit the general actuation functionality
+	'''
 	def __init__(self):
-		print("init actuator  class")
-		'''
-		actuator info:
-			type: ['dmx_controller','onohat_controller']
-		'''
+		#basic class info
 		self.info = {
 					 "ros_label"   : "/actuator",
 				     "controller"  : "/base_controller",
@@ -25,44 +22,63 @@ class Actuator(object):
 				     "id" 		   : 0,
 					 "component_id": 0
 				    }
-		#set root for services and topics
-		self.set_info(self.info)
 
-		#state
-		self.max_limit  = 0
-		self.min_limit 	= 360
+		#actuator operation range
+		self.max_limit  = 360
+		self.min_limit 	= 0
+		self.origin = 0
 
+		#state variable
 		self.state = {"state" : 0}
 		#command
 		self.command  = 0
 
-		#service definitions
-		#self.set_topics()
-		#self.set_services()
+	
+	def deploy_actuator(self):
+		'''
+		function to update custom actuator's info and deploy services and topics
+		'''
+		self.set_info(self.info)
+		self.set_topics()
+		self.set_services()
+
+
+	def get_info(self):
+		'''
+		return actuator's basic info
+		'''
+		return self.info
+
+
+	def get_state(self):
+		'''
+		return actuator's current state (joint_state topic) 
+		'''
+		self.state = self.joint_subscriber.data
+		return self.state
+
 
 	def set_topics(self):
-		print("topics created")
+		'''
+		function to deploy all publishers and subscribers
+		'''
+		#(1) Joint_state subscriber
 		self.joint_subscriber = DmxJointStatesSubscriber(info = self.info)
-		print(self.joint_subscriber.topic_name)
+		
 
 	def set_services(self):
+		'''
+		function to deploy service servers
+		'''
 		pass
 
-	#actuation depending on type
-	def set_actuation_range(self,min = 0, max = 300, origin = 0):
+	def set_actuation_range(self, min= 0, max = 300, origin = 0):
+		'''
+		function to set the actuation range
+		'''
 		self.max_limit = max
 		self.min_limit = min
 		self.origin = origin
-
-
-	def validate_position(self, command):
-		if command['value'] in range(self.min_limit, self.max_limit):
-			print"YES"
-			return True
-		else:
-			print"NOP"
-			return False
-
 
 	def set_id(self, id):
 		'''
@@ -72,24 +88,22 @@ class Actuator(object):
 
 
 	def set_info(self, info):
+		'''
+		function to update the actuator's info
+		'''
 		self.info = info
 		self.root = self.info['controller']
 
 
-	def get_info(self):
+	def validate_position(self, command):
 		'''
-		return actuator basic info
+		function to validate the possition command sent to the actuator
 		'''
-		return self.info
+		if command['value'] in range(self.min_limit, self.max_limit):
+			return True
+		else:
+			return False
 
-
-	def get_state(self):
-		'''
-		return actuator's current state
-		'''
-		#subscriber
-		self.state = self.joint_subscriber.data
-		return self.state
 
 	def set_position(self, command, threaded = False,):
 		'''
@@ -99,7 +113,7 @@ class Actuator(object):
 		assert self.validate_position(command), "Wrong command"
 
 		name = self.root + "/goal_position"
-		print"requesting servie " + name
+		#print"requesting servie " + name
 		service = CommandService(service_name  = name)
 
 		if threaded:
@@ -124,16 +138,26 @@ class Actuator(object):
 
 
 #HELPER CLASSES
+
 class CommandService(object):
+	'''
+	Helper class to handle command service requests for the actuator
+	'''
     def __init__(self, service_name = "/goal_position"):
         #get service name
         self.service_name = service_name
 
 
     def service_request_threaded(self, id, val):
+    	'''
+    	function to call the service in a separate thread
+    	'''
         threading.Thread(target = self.service_request, args = (id,val)).start()
 
     def service_request(self, id, val):
+    	'''
+		function to perform the command service request for the actuator
+    	'''
         rospy.wait_for_service(self.service_name)
         try:
             goal_position = rospy.ServiceProxy(self.service_name, JointCommand)
@@ -146,6 +170,9 @@ class CommandService(object):
 
 
 class DmxJointStatesSubscriber(object):
+	'''
+	Helper class to handle joint state subscription
+	'''
     def __init__(self, info ={"ros_label":"joint"}):
 
 		self.topic_name = info["controller"] + "/joint_states"
@@ -157,6 +184,8 @@ class DmxJointStatesSubscriber(object):
 
 
     def callback(self, joint):
-		#joint.velocity
+		'''
+		callback function to handle and format joint state date
+		'''
 		d = dict(zip(joint.name,joint.position))
 		self.data = d
