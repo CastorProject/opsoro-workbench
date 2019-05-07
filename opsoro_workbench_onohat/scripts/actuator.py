@@ -2,10 +2,13 @@
 #general library import
 import rospy
 import time
-# create base msg and services
+# create base services
 from dynamixel_workbench_msgs.srv import JointCommand
 from dynamixel_workbench_msgs.srv import TorqueEnable
+#import topic msgs
 from sensor_msgs.msg import JointState
+
+print JointCommand
 
 class Actuator(object):
 	'''
@@ -32,7 +35,18 @@ class Actuator(object):
 		self.state = {"state" : 0}
 		#command
 		self.command  = 0
+		self.commmand_srv = JointCommand		
+		self.torque_enable_srv = TorqueEnable 
+		
+		
+		
+	
 
+	def set_srv_types(self,servo_command, torque_enable):
+		#		
+		self.command_srv = servo_command
+		self.torque_enable_srv = torque_enable
+		#default base class to build
 	
 	def deploy_actuator(self):
 		'''
@@ -70,6 +84,9 @@ class Actuator(object):
 		'''
 		function to deploy service servers
 		'''
+		name = self.root + "/goal_position"
+		self.service_handler = CommandService(name, self.command_srv, self.torque_enable_srv)
+		self.service_handler
 		pass
 
 	def set_actuation_range(self, min= 0, max = 300, origin = 0):
@@ -105,21 +122,21 @@ class Actuator(object):
 			return False
 
 
-	def set_position(self, command, threaded = False,):
+	def set_position(self, command, threaded = False):
 		'''
 		set actuator's position
 		'''
 		#validate that command is within the limits
 		assert self.validate_position(command), "Wrong command"
 
-		name = self.root + "/goal_position"
+		#name = self.root + "/goal_position"
 		#print"requesting servie " + name
-		service = CommandService(service_name  = name)
+		#service = CommandService(service_name  = name)
 
 		if threaded:
-			service.service_request_threaded(id = self.info['id'], val = command['value'])
+			self.service_handler.service_request_threaded(id = self.info['id'], value = command['value'])
 		else:
-			service.service_request(id = self.info['id'], val= command['value'])
+			self.service_handler.service_request(id = self.info['id'], value= command['value'])
 
 	def set_speed(self, command, threaded = False):
 		'''
@@ -143,37 +160,36 @@ class CommandService(object):
 	'''
 	Helper class to handle command service requests for the actuator
 	'''
-    def __init__(self, service_name = "/goal_position"):
-        #get service name
-        self.service_name = service_name
+	def __init__(self, service_name = "/goal_position", msg_type = JointCommand, torque_srv = TorqueEnable):
+		#get service name
+		self.service_name = service_name
+		self.joint_command_srv = msg_type
+		self.torque_srv = torque_srv
+		print msg_type
 
+	def service_request_threaded(self, id, value):
+		'''function to performe command service in a different thread'''		
+		threading.Thread(target = self.service_request, args = (id,value)).start()
+	
 
-    def service_request_threaded(self, id, val):
-    	'''
-    	function to call the service in a separate thread
-    	'''
-        threading.Thread(target = self.service_request, args = (id,val)).start()
+	def service_request(self, id, value):
+		'''function to perform the command service request for the actuator'''
+		rospy.wait_for_service(self.service_name)
+		try:
+			goal_position = rospy.ServiceProxy(self.service_name, self.joint_command_srv)
+		    	res = goal_position(id = id, value = value)
+		    	time.sleep (0.001)
+		    	return (res.result)
 
-    def service_request(self, id, val):
-    	'''
-		function to perform the command service request for the actuator
-    	'''
-        rospy.wait_for_service(self.service_name)
-        try:
-            goal_position = rospy.ServiceProxy(self.service_name, JointCommand)
-            res = goal_position(id = id, value = val)
-            time.sleep (0.001)
-            return (res.result)
+        	except rospy.ServiceException, e:
+            		print "Service call failed: %s"%e
 
-        except rospy.ServiceException, e:
-            print "Service call failed: %s"%e
-
-
+	
 class DmxJointStatesSubscriber(object):
 	'''
 	Helper class to handle joint state subscription
 	'''
-    def __init__(self, info ={"ros_label":"joint"}):
+	def __init__(self, info ={"ros_label":"joint"}):
 
 		self.topic_name = info["controller"] + "/joint_states"
 		#create subscriber
@@ -183,7 +199,7 @@ class DmxJointStatesSubscriber(object):
 
 
 
-    def callback(self, joint):
+    	def callback(self, joint):
 		'''
 		callback function to handle and format joint state date
 		'''

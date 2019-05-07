@@ -6,10 +6,12 @@ import time
 from actuator import Actuator
 
 #custom control service and messages
-from dynamixel_workbench_msgs.srv import JointCommand
+#from dynamixel_workbench_msgs.srv import JointCommand
+from opsoro_workbench_onohat.srv import ServoCommand
+from opsoro_workbench_onohat.srv import EnablePcaPower
 #from dynamixel_workbench_msgs.srv import TorqueEnable
 
-
+print ServoCommand
 
 
 class DmxServo(Actuator):
@@ -59,7 +61,8 @@ class OnohatServo(Actuator):
                      "component_id": 0
 				    }
 
-        #deploy actuator
+	self.set_srv_types(ServoCommand, EnablePcaPower)        
+	#deploy actuator
         self.deploy_actuator()
 
 
@@ -79,26 +82,30 @@ if __name__ == '__main__':
 
     rate = rospy.Rate(10) # 10hz
 
-    servo  = DmxServo()
-    shoulder = DmxServo()
+    #servo  = DmxServo()
+    #shoulder = DmxServo()
     hand = OnohatServo()
 
 
-    servo.set_motor_id(1)
-    shoulder.set_motor_id(2)
+    #servo.set_motor_id(1)
+    #shoulder.set_motor_id(2)
     hand.set_motor_id(1)
 
+
+
     hand.set_actuation_range(min =800, origin =1000, max = 2000)
-    servo.set_actuation_range(min = 50, origin = 350, max = 650)
-    shoulder.set_actuation_range(min =370,origin = 370,max= 800)
+    #hand.set_stiffness(command = True)
+    #servo.set_actuation_range(min = 50, origin = 350, max = 650)
+    #shoulder.set_actuation_range(min =370,origin = 370,max= 800)
 
     print(hand.info)
     time.sleep(3)
-    servo.set_position(command = {'value' : 350})
-    shoulder.set_position(command = {'value':370})
+    hand.set_position(command ={'value':801}) 
+    #servo.set_position(command = {'value' : 350})
+    #shoulder.set_position(command = {'value':370})
 
     while not (rospy.is_shutdown()):
-        print(servo.get_state())
+        print(hand.get_state())
 
         #print servo.get_info()
         rate.sleep()

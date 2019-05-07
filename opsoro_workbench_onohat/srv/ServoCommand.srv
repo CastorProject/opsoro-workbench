@@ -1,6 +1,6 @@
 #servo command service to the onohat
 
-uint8 channel
+uint8 id
 uint32 value
 ---
 bool result

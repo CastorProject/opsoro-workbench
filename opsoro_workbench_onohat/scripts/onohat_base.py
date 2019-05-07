@@ -51,7 +51,7 @@ class OnohatRos(object):
 		
 		"""servo services"""
 		#1. pca power service
-		rospy.Service("enable_servo_pca", EnablePcaPower, self.set_pca_server)
+		rospy.Service("torque_enable", EnablePcaPower, self.set_pca_server)
 		#2. set command service
 		rospy.Service("goal_position", ServoCommand, self.set_servo_server)
 		#3. broadcast command service
@@ -121,7 +121,7 @@ class OnohatRos(object):
 
 	def set_servo_server(self, req):
 		with Hardware.lock:
-			Hardware.Servo.set(channel = req.channel, pos=req.value)
+			Hardware.Servo.set(channel = req.id, pos=req.value)
 		
 		return True
 
