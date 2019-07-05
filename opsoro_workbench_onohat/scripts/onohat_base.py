@@ -10,7 +10,7 @@ from opsoro_workbench_onohat.srv import EnablePcaPower
 from opsoro_workbench_onohat.srv import ServoCommand
 from opsoro_workbench_onohat.srv import ServoBroadcastCommand
 #?
-import onohat_interface
+#import onohat_interface
 #general purpose libraries
 import rospy
 import time
