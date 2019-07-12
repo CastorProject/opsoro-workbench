@@ -4,7 +4,7 @@
 # an embarrassing number of globals in the frame() function and stuff.
 # Needed to get SOMETHING working, can focus on improvements next.
 
-import Adafruit_ADS1x15
+import Adafruit.ADS1x15 as Adafruit_ADS1x15
 import argparse
 import math
 import pi3d
@@ -85,7 +85,7 @@ if adc:
 
 # Load SVG file, extract paths & convert to point lists --------------------
 
-dom               = parse("/home/ubuntu/catkin_ws/src/beginner_tutorials/src/graphics/cyclops-eye.svg")
+dom               = parse("/home/pi/catkin_ws/src/opsoro-workbench/castor_eyes/src/graphics/cyclops-eye.svg")
 vb                = getViewBox(dom)
 pupilMinPts       = getPoints(dom, "pupilMin"      , 32, True , True )
 pupilMaxPts       = getPoints(dom, "pupilMax"      , 32, True , True )
@@ -110,7 +110,7 @@ DISPLAY.set_background(0, 0, 0, 1) # r,g,b,alpha
 # the center point of the screen to the center of each eye.  This geometry
 # is explained more in-depth in fbx2.c.
 eyePosition = DISPLAY.width / 4
-eyeRadius   = 128  # Default; use 240 for IPS screens
+eyeRadius   = 240  # Default; use 240 for IPS screens
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--radius", type=int)
@@ -131,9 +131,9 @@ light  = pi3d.Light(lightpos=(0, -500, -500), lightamb=(0.2, 0.2, 0.2))
 
 # Load texture maps --------------------------------------------------------
 
-irisMap       = pi3d.Texture("/home/ubuntu/catkin_ws/src/beginner_tutorials/src/graphics/iris.jpg", mipmap=False, filter=pi3d.GL_LINEAR)
-scleraMap = pi3d.Texture("/home/ubuntu/catkin_ws/src/beginner_tutorials/src/graphics/sclera.png", mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
-lidMap         = pi3d.Texture("/home/ubuntu/catkin_ws/src/beginner_tutorials/src/graphics/lid.png", mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
+irisMap       = pi3d.Texture("/home/pi/catkin_ws/src/opsoro-workbench/castor_eyes/src/graphics/iris.jpg", mipmap=False, filter=pi3d.GL_LINEAR)
+scleraMap = pi3d.Texture("/home/pi/catkin_ws/src/opsoro-workbench/castor_eyes/src/graphics/sclera.png", mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
+lidMap         = pi3d.Texture("/home/pi/catkin_ws/src/opsoro-workbench/castor_eyes/src/graphics/lid.png", mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
 
 # U/V map may be useful for debugging texture placement; not normally used
 #uvMap     = pi3d.Texture("./graphics/uv.png"    , mipmap=False, filter=pi3d.GL_LINEAR, blend=False, m_repeat=True)
@@ -705,7 +705,7 @@ def listener():
 
 listener()
 
-RATE = rospy.Rate(10)
+RATE = rospy.Rate(100)
 BLINK = 1
 while not rospy.is_shutdown():
 	
