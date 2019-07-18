@@ -705,7 +705,7 @@ def listener():
 
 listener()
 
-RATE = rospy.Rate(100)
+RATE = rospy.Rate(200)
 BLINK = 1
 while not rospy.is_shutdown():
 	
