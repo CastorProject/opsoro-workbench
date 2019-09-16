@@ -20,6 +20,7 @@ from gfxutil import *
 import rospy
 from std_msgs.msg import String
 from std_msgs.msg import Bool
+from std_msgs.msg import Float32
 from geometry_msgs.msg import Point
 
 
@@ -36,10 +37,12 @@ TRACKING        = True  # If True, eyelid tracks pupil
 PUPIL_SMOOTH    = 16    # If > 0, filter input from PUPIL_IN
 PUPIL_MIN       = 0.0   # Lower analog range from PUPIL_IN
 PUPIL_MAX       = 1.0   # Upper "
+#PUPIL_MIN       = 0.0   # Lower analog range from PUPIL_IN
+#PUPIL_MAX       = 1.0   # Upper "
 WINK_L_PIN      = 22    # GPIO pin for LEFT eye wink button
 BLINK_PIN       = 23    # GPIO pin for blink button (BOTH eyes)
 WINK_R_PIN      = 24    # GPIO pin for RIGHT eye wink button
-AUTOBLINK       = False  # If True, eyes blink autonomously
+AUTOBLINK       = False # If True, eyes blink autonomously
 CRAZY_EYES      = False # If True, each eye moves in different directions
 
 
@@ -130,10 +133,25 @@ light  = pi3d.Light(lightpos=(0, -500, -500), lightamb=(0.2, 0.2, 0.2))
 
 
 # Load texture maps --------------------------------------------------------
+f = open("/home/pi/catkin_ws/src/opsoro-workbench/castor_eyes/src/Conf.txt",'r')
+lines = f.readlines()
+text=[]
+
+for l in lines:
+	l = l.replace("\n","")
+	l = l.split(";")
+	text.append(l)
+
+f.close()
+
 
 irisMap       = pi3d.Texture("/home/pi/catkin_ws/src/opsoro-workbench/castor_eyes/src/graphics/iris.jpg", mipmap=False, filter=pi3d.GL_LINEAR)
 scleraMap = pi3d.Texture("/home/pi/catkin_ws/src/opsoro-workbench/castor_eyes/src/graphics/sclera.png", mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
 lidMap         = pi3d.Texture("/home/pi/catkin_ws/src/opsoro-workbench/castor_eyes/src/graphics/lid.png", mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
+if text[0][0]=='1':
+	lidMap         = pi3d.Texture(text[1][0], mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
+elif text[0][0]=='2':
+	lidMap         = pi3d.Texture(text[2][0], mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
 
 # U/V map may be useful for debugging texture placement; not normally used
 #uvMap     = pi3d.Texture("./graphics/uv.png"    , mipmap=False, filter=pi3d.GL_LINEAR, blend=False, m_repeat=True)
@@ -664,14 +682,23 @@ def split( # Recursive simulated pupil response when no analog sensor
 			v = startValue + dv * dt / duration
 			if   v < PUPIL_MIN: v = PUPIL_MIN
 			elif v > PUPIL_MAX: v = PUPIL_MAX
+			#v = 1.1
 			frame(v) # Draw frame w/interim pupil scale value
 
 
 
 
 #ROS functions
+def callback3(String):
+	global Bandera
+	if String.data == 'neutral':
+		Bandera = False
 
-
+def callback2(Float32):
+	global size
+	global Bandera
+	size = Float32.data
+	Bandera = True
 
 def callback1(Point):
 	rospy.loginfo(rospy.get_caller_id() + "\n%s", Point)
@@ -694,9 +721,11 @@ def callback(Bool):
 
 
 def listener():
-	rospy.init_node('listener', anonymous=True)
-	rospy.Subscriber("move_eyes", Point, callback1)
-	rospy.Subscriber("blink", Bool, callback)
+	rospy.init_node('eyes_listener', anonymous=True)
+	rospy.Subscriber("/emotions", String, callback3)
+	rospy.Subscriber("/size_pupils", Float32, callback2)
+	rospy.Subscriber("/move_eyes", Point, callback1)
+	rospy.Subscriber("/blink", Bool, callback)
 	#rospy.spin()
 
 
@@ -704,33 +733,47 @@ def listener():
 # MAIN LOOP -- runs continuously -------------------------------------------
 
 listener()
-
 RATE = rospy.Rate(200)
 BLINK = 1
+size = 0.5
+Bandera = False
+rospy.loginfo("eyes node started ok")
 while not rospy.is_shutdown():
-	
-	if PUPIL_IN >= 0: # Pupil scale from sensor
-		v = adcValue[PUPIL_IN]
-		if PUPIL_IN_FLIP: v = 1.0 - v
-		# If you need to calibrate PUPIL_MIN and MAX,
-		# add a 'print v' here for testing.
-		if   v < PUPIL_MIN: v = PUPIL_MIN
-		elif v > PUPIL_MAX: v = PUPIL_MAX
-		# Scale to 0.0 to 1.0:
-		v = (v - PUPIL_MIN) / (PUPIL_MAX - PUPIL_MIN)
-		if PUPIL_SMOOTH > 0:
-			v = ((currentPupilScale * (PUPIL_SMOOTH - 1) + v) /
-			     PUPIL_SMOOTH)
-		frame(v)
-	else: # Fractal auto pupil scale
-		v = random.random()
-		split(currentPupilScale, v, 4.0, 1.0)
-	currentPupilScale = v
-
+	if not Bandera:
+		if PUPIL_IN >= 0: # Pupil scale from sensor
+			v = adcValue[PUPIL_IN]
+			if PUPIL_IN_FLIP: v = 1.0 - v
+			# If you need to calibrate PUPIL_MIN and MAX,
+			# add a 'print v' here for testing.
+			if   v < PUPIL_MIN: v = PUPIL_MIN
+			elif v > PUPIL_MAX: v = PUPIL_MAX
+			# Scale to 0.0 to 1.0:
+			v = (v - PUPIL_MIN) / (PUPIL_MAX - PUPIL_MIN)
+			if PUPIL_SMOOTH > 0:
+				v = ((currentPupilScale * (PUPIL_SMOOTH - 1) + v) /
+				     PUPIL_SMOOTH)
+			frame(v)
+		else: # Fractal auto pupil scale
+			v = random.random()
+			split(currentPupilScale, v, 4.0, 1.0)
+		currentPupilScale = v
+	else:
+		frame(size)
+		currentPupilScale = size
+		#if currentPupilScale < size:
+		#	for i in range(int(currentPupilScale*10),int(size*10)):
+		#		frame(float(i)/10)
+		#		time.sleep(1)
+		#elif currentPupilScale > size:
+		#	for i in range(int(currentPupilScale*10),int(size*10),-1):
+		#		frame(float(i)/10)
+		#		time.sleep(1)
+		#else:
+		#	frame(size)
+		#currentPupilScale = size
 	RATE.sleep()
-	
 
 
 #if __name__=="__main__":
 #	while True:
-#		while_loop()I
+#		while_loop()
