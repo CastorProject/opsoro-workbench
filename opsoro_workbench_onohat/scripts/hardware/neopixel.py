@@ -1,5 +1,5 @@
 #from opsoro.hardware.spi import SPI
-from spi import SPI
+from .spi import SPI
 # > NEOPIXEL                IN  OUT
 CMD_NEO_INIT = 80  # 1   0    Init Neopixel
 CMD_NEO_ENABLE = 81  # 0   0    Turn on MOSFET

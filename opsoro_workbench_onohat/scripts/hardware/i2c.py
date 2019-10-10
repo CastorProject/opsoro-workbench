@@ -1,5 +1,5 @@
 #from opsoro.hardware.spi import SPI
-from spi import SPI
+from .spi import SPI
 
 # > I2C                      IN  OUT
 CMD_I2C_DETECT = 20  # 1   1    Test if there's a device at addr

@@ -12,7 +12,7 @@ import glob
 import serial as pyserial
 
 #from opsoro.console_msg import *
-from console_msg import *
+from .console_msg import *
 
 class _Serial(object):
     # > SERIAL
@@ -37,7 +37,7 @@ class _Serial(object):
                 s.close()
                 self.ports.append(port)
             except Exception as e:
-                print e
+                print(e)
                 pass
         print_info(self.ports)
 

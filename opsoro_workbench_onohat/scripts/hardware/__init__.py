@@ -10,8 +10,8 @@ This module defines the interface for communicating with the shield.
 import threading
 import time
 
-from spi import SPI
-from usb_serial import Serial
+from .spi import SPI
+from .usb_serial import Serial
 
 from . import analog, capacitive, i2c, neopixel, servo
 

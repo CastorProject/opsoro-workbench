@@ -1,5 +1,5 @@
 #from opsoro.hardware.spi import SPI
-from spi import SPI
+from .spi import SPI
 
 # > SERVO                    IN  OUT
 CMD_SERVO_INIT = 40  # 0   0    Init PCA9685
