@@ -14,7 +14,7 @@ from opsoro_workbench_onohat.srv import ServoBroadcastCommand
 #general purpose libraries
 import rospy
 import time
-
+from std_msgs.msg import Int16
 
 
 class OnohatRos(object):
@@ -33,11 +33,17 @@ class OnohatRos(object):
 		self.check_board_connection()
 		#init servo interface
 		self.init_servo_interface()
+		#init capacitive interface
+		self.initCapacitiveInterface()
+		#init variables
+		self.initVariables()
 		#launch services 
 		self.set_services()
 		#launch publishers and subscribers
 		self.set_publishers()
 	
+	def initVariables(self):
+		self.touchSensor = Int16()
 	
 	def set_services(self):
 		"""base services"""
@@ -59,9 +65,12 @@ class OnohatRos(object):
 
 	
 	def set_publishers(self):
-		pass
+		self.leftLeg = rospy.Publisher("/touchSensor/leftLeg", Int16, queue_size = 10)
+		self.rightLeg = rospy.Publisher("/touchSensor/rightLeg", Int16, queue_size = 10)
+		self.leftArm = rospy.Publisher("/touchSensor/leftArm", Int16, queue_size = 10)
+		self.rightArm = rospy.Publisher("/touchSensor/rightArm", Int16, queue_size = 10)
+		self.head = rospy.Publisher("/touchSensor/head", Int16, queue_size = 10)
 
-	
 	def check_board_connection(self):
 		with Hardware.lock:
 			res = Hardware.ping()
@@ -132,13 +141,27 @@ class OnohatRos(object):
 
 		return True
 
+	def initCapacitiveInterface(self):
+		with Hardware.lock:
+			Hardware.Capacitive.init(electrodes=12, gpios=0, autoconfig=True)
+
 
 	"""main loop node"""
 	def main_loop(self):
 		#hardware handler
-		
+		data = Hardware.Capacitive.get_filtered_data()
+		self.touchSensor.data = data[7]
+		self.leftLeg.publish(self.touchSensor)
+		self.touchSensor.data = data[8]
+		self.rightLeg.publish(self.touchSensor)
+		self.touchSensor.data = data[9]
+		self.leftArm.publish(self.touchSensor)
+		self.touchSensor.data = data[10]
+		self.rightArm.publish(self.touchSensor)
+		self.touchSensor.data = data[11]
+		self.head.publish(self.touchSensor)
 		self.rate.sleep()
-
+		return
 
 if __name__=="__main__":
 	onohat = OnohatRos()

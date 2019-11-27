@@ -1,29 +1,122 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 20.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="68px" height="68px" viewBox="0 0 68 68" style="enable-background:new 0 0 68 68;" xml:space="preserve">
-<style type="text/css">
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   width="68px"
+   height="68px"
+   viewBox="0 0 68 68"
+   style="enable-background:new 0 0 68 68;"
+   xml:space="preserve"
+   sodipodi:docname="eye.svg"
+   inkscape:version="0.92.4 (f8dce91, 2019-08-02)"><metadata
+   id="metadata3837"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+   id="defs3835" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1855"
+   inkscape:window-height="1056"
+   id="namedview3833"
+   showgrid="false"
+   inkscape:zoom="6.6029412"
+   inkscape:cx="6.9473226"
+   inkscape:cy="20.46136"
+   inkscape:window-x="65"
+   inkscape:window-y="24"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<style
+   type="text/css"
+   id="style3815">
 	.st0{fill:none;stroke:#00DCF0;stroke-width:0.2835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st1{fill:none;stroke:#000000;stroke-width:0.2835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st2{fill:none;stroke:#F00000;stroke-width:0.2835;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 </style>
-<rect x="-8.5" y="-8.5" class="st0" width="85" height="85"/>
-<circle class="st0" cx="34" cy="34" r="34"/>
-<path id="scleraBack" class="st0" d="M34,10C20.7,10,10,20.7,10,34S20.7,58.1,34,58.1S58.1,47.3,58.1,34S47.3,10,34,10"/>
-<path id="scleraFront" class="st0" d="M34,17.7c9,0,16.3,7.3,16.3,16.3S43,50.3,34,50.3S17.7,43,17.7,34S25,17.7,34,17.7"/>
-<path id="iris" class="st1" d="M34,16.3c9.8,0,17.7,7.9,17.7,17.7S43.8,51.7,34,51.7S16.3,43.8,16.3,34S24.2,16.3,34,16.3"/>
-<path id="pupilMax" class="st1" d="M34,22.7c6.3,0,11.3,5.1,11.3,11.3S40.3,45.4,34,45.4S22.7,40.3,22.7,34S27.8,22.7,34,22.7"/>
-<path id="pupilMin" class="st1" d="M34,31.2c1.6,0,2.8,1.3,2.8,2.8c0,1.6-1.3,2.8-2.8,2.8c-1.6,0-2.8-1.3-2.8-2.8S32.5,31.2,34,31.2
-	"/>
-<path id="lowerLidEdge" class="st2" d="M72.7,31.6c0.1,0.8,0.1,1.6,0.1,2.4c0,21.4-17.3,38.7-38.7,38.7c-17.7,0-32.7-11.9-37.3-28.1
-	"/>
-<path id="lowerLidClosed" class="st2" d="M68.1,30.3c0.3,4.4-1,11-9.6,15.1c-10.4,5-25.4,3.6-37.2,0.3C9.5,42.5,8.3,40.3,2,42.4
-	c-3.9,1.3-3.4,1.6-3.6,2.2"/>
-<path id="lowerLidOpen" class="st2" d="M68.2,31.7c1,12.4-4.3,22.6-11.8,28.6c-11.1,8.8-23.4,6.4-31.9,3.3
-	C4.9,56.5,5.8,48.6,1.6,47.7c-2-0.4-3.1-1.1-3.2-3.1"/>
-<path id="upperLidEdge" class="st2" d="M-3.6,43.3c-0.7-3-1.1-6.1-1.1-9.3C-4.7,12.6,12.6-4.7,34-4.7c20.1,0,36.6,15.2,38.5,34.8"/>
-<path id="upperLidClosed" class="st2" d="M68.2,31.7c-0.2,5.5-2.8,11.3-10.8,15.2c-9,4.4-18.7,4-33.5,0.7
-	C8.2,44.1,7,43.6,1.4,44.3c-2,0.2-2.6-0.2-2.8-1.1"/>
-<path id="upperLidOpen" class="st2" d="M68.1,30.3C66.5,18.6,58.9,9.5,53.2,5.9c-6.8-4.3-20.3-7.8-32.8,0
-	C6.8,14.4,7.2,20.9,1,28.7c-2.6,3.3-2,6.6-2.3,14.5"/>
+<rect
+   x="-8.5"
+   y="-8.5"
+   class="st0"
+   width="85"
+   height="85"
+   id="rect3817" />
+<circle
+   class="st0"
+   cx="34"
+   cy="34"
+   r="34"
+   id="circle3819" />
+<path
+   id="scleraBack"
+   class="st0"
+   d="M34,10C20.7,10,10,20.7,10,34S20.7,58.1,34,58.1S58.1,47.3,58.1,34S47.3,10,34,10" />
+<path
+   id="scleraFront"
+   class="st0"
+   d="M34,17.7c9,0,16.3,7.3,16.3,16.3S43,50.3,34,50.3S17.7,43,17.7,34S25,17.7,34,17.7" />
+<path
+   id="iris"
+   class="st1"
+   d="M34,16.3c9.8,0,17.7,7.9,17.7,17.7S43.8,51.7,34,51.7S16.3,43.8,16.3,34S24.2,16.3,34,16.3" />
+<path
+   id="pupilMax"
+   class="st1"
+   d="M34,22.7c6.3,0,11.3,5.1,11.3,11.3S40.3,45.4,34,45.4S22.7,40.3,22.7,34S27.8,22.7,34,22.7" />
+<path
+   id="pupilMin"
+   class="st1"
+   d="M34,31.2c1.6,0,2.8,1.3,2.8,2.8c0,1.6-1.3,2.8-2.8,2.8c-1.6,0-2.8-1.3-2.8-2.8S32.5,31.2,34,31.2  " />
+<path
+   id="lowerLidEdge"
+   class="st2"
+   d="m 72.7,31.6 c 0.1,0.8 0.1,1.6 0.1,2.4 0,21.4 26.318368,15.742964 -38.7,38.7 C 17.409827,78.593056 1.4,60.8 -3.2,44.6"
+   inkscape:connector-curvature="0"
+   style="fill:none;stroke:#f00000;stroke-width:0.28349999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+   sodipodi:nodetypes="cssc" />
+<path
+   id="lowerLidClosed"
+   class="st2"
+   d="M68.1,30.3c0.3,4.4-1,11-9.6,15.1c-10.4,5-25.4,3.6-37.2,0.3C9.5,42.5,8.3,40.3,2,42.4  c-3.9,1.3-3.4,1.6-3.6,2.2" />
+<path
+   id="lowerLidOpen"
+   class="st2"
+   d="M 68.2,31.7 C 69.2,44.1 63.9,54.3 56.4,60.3 48.650041,48.226665 34.797073,55.502853 24.5,63.6 4.9,56.5 5.8,48.6 1.6,47.7 c -2,-0.4 -3.1,-1.1 -3.2,-3.1"
+   inkscape:connector-curvature="0"
+   style="fill:none;stroke:#f00000;stroke-width:0.28349999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+   sodipodi:nodetypes="ccccc" />
+<path
+   id="upperLidEdge"
+   class="st2"
+   d="M -3.6,43.3 C -4.3,40.3 -7.8997745,33.962011 -4.7,34 29.014368,34.400268 31.714948,7.6600417 34,-4.7 37.65405,-24.465068 70.6,10.5 72.5,30.1"
+   inkscape:connector-curvature="0"
+   style="fill:none;stroke:#f00000;stroke-width:0.28349999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+   sodipodi:nodetypes="cssc" />
+<path
+   id="upperLidClosed"
+   class="st2"
+   d="M68.2,31.7c-0.2,5.5-2.8,11.3-10.8,15.2c-9,4.4-18.7,4-33.5,0.7  C8.2,44.1,7,43.6,1.4,44.3c-2,0.2-2.6-0.2-2.8-1.1" />
+<path
+   id="upperLidOpen"
+   class="st2"
+   d="M 68.2,31.7 C 57.210245,33.781737 63.089087,10.597105 57.389087,6.9971047 55.280252,3.8085122 29.890002,25.058686 21.157238,32.706236 3.4851523,40.292245 12.822204,32.215475 6.3006681,34.152116 3.7006681,37.452116 -1,35.3 -1.3,43.2"
+   inkscape:connector-curvature="0"
+   style="fill:none;stroke:#f00000;stroke-width:0.28349999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
+   sodipodi:nodetypes="ccccc" />
 </svg>
