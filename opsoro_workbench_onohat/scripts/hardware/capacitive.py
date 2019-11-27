@@ -1,5 +1,5 @@
 #from opsoro.hardware.spi import SPI
-from spi import SPI
+from .spi import SPI
 
 # > CAPACITIVE TOUCH         IN  OUT
 CMD_CAP_INIT = 60  # 3   0    Init MPR121

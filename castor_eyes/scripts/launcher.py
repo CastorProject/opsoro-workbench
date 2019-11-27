@@ -18,6 +18,6 @@ node_name = 'eyes'
 print "start running node"
 os.system("rosrun castor_eyes eyes.py")
 print "command sent"
-
+os.system("rosrun castor_eyes eyes_manager.py")
 time.sleep(10)
 print "after 10 seconds"
