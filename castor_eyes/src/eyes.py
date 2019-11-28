@@ -145,30 +145,13 @@ for l in lines:
 f.close()
 
 
-f = open("Conf.txt",'r')
-lines = f.readlines()
-text=[]
-for l in lines:
-	l = l.replace("\n","")
-	l = l.split(";")
-	text.append(l)
-f.close()
-
 irisMap       = pi3d.Texture("/home/pi/catkin_ws/src/opsoro-workbench/castor_eyes/src/graphics/iris.jpg", mipmap=False, filter=pi3d.GL_LINEAR)
 scleraMap = pi3d.Texture("/home/pi/catkin_ws/src/opsoro-workbench/castor_eyes/src/graphics/sclera.png", mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
-<<<<<<< HEAD
-##lidMap         = pi3d.Texture("/home/pi/catkin_ws/src/opsoro-workbench/castor_eyes/src/graphics/lid.png", mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
-if text[0]==1:
-	lidMap         = pi3d.Texture(text[1], mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
-elif text[0]==2:
-	lidMap         = pi3d.Texture(text[2], mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
-=======
 lidMap         = pi3d.Texture("/home/pi/catkin_ws/src/opsoro-workbench/castor_eyes/src/graphics/lid.png", mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
 if text[0][0]=='1':
 	lidMap         = pi3d.Texture(text[1][0], mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
 elif text[0][0]=='2':
 	lidMap         = pi3d.Texture(text[2][0], mipmap=False, filter=pi3d.GL_LINEAR, blend=True)
->>>>>>> origin
 
 # U/V map may be useful for debugging texture placement; not normally used
 #uvMap     = pi3d.Texture("./graphics/uv.png"    , mipmap=False, filter=pi3d.GL_LINEAR, blend=False, m_repeat=True)
@@ -738,13 +721,9 @@ def callback(Bool):
 
 
 def listener():
-<<<<<<< HEAD
-	rospy.init_node('listener', anonymous=True)
-=======
 	rospy.init_node('eyes_listener', anonymous=True)
 	rospy.Subscriber("/emotions", String, callback3)
 	rospy.Subscriber("/size_pupils", Float32, callback2)
->>>>>>> origin
 	rospy.Subscriber("/move_eyes", Point, callback1)
 	rospy.Subscriber("/blink", Bool, callback)
 	#rospy.spin()

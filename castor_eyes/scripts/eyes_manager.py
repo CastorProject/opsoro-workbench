@@ -44,11 +44,7 @@ class eyesManagerNode(object):
 		return
 
 	def main(self):
-<<<<<<< HEAD
-		rospy.loginfo("[%s] eyes manager node started ok", self.name)
-=======
 		rospy.loginfo("[%s] Facemotor node started ok", self.name)
->>>>>>> origin
 		x = [i-30 for i in range(60)]
 		y = [i-25 for i in range(50)]
 		contX = 0
