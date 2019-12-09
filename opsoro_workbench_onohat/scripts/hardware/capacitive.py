@@ -82,7 +82,7 @@ class Capacitive(object):
         :rtype:         list
         """
         data = SPI.command(CMD_CAP_TOUCHED, returned=2)
-        return (data[0] << 8) | data[1]
+	return (data[0] << 8) | data[1]
 
     def set_gpio_pinmode(self, gpio, pinmode):
         """

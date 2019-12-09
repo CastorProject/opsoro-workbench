@@ -70,6 +70,7 @@ class OnohatRos(object):
 		self.leftArm = rospy.Publisher("/touchSensor/leftArm", Int16, queue_size = 10)
 		self.rightArm = rospy.Publisher("/touchSensor/rightArm", Int16, queue_size = 10)
 		self.head = rospy.Publisher("/touchSensor/head", Int16, queue_size = 10)
+		self.antenna = rospy.Publisher("/touchSensor/antenna", Int16, queue_size = 10)
 
 	def check_board_connection(self):
 		with Hardware.lock:
@@ -145,21 +146,23 @@ class OnohatRos(object):
 		with Hardware.lock:
 			Hardware.Capacitive.init(electrodes=12, gpios=0, autoconfig=True)
 
-
 	"""main loop node"""
 	def main_loop(self):
 		#hardware handler
 		data = Hardware.Capacitive.get_filtered_data()
-		self.touchSensor.data = data[7]
+		#print data
+		self.touchSensor.data = data[6]
 		self.leftLeg.publish(self.touchSensor)
-		self.touchSensor.data = data[8]
+		self.touchSensor.data = data[7]
 		self.rightLeg.publish(self.touchSensor)
-		self.touchSensor.data = data[9]
+		self.touchSensor.data = data[8]
 		self.leftArm.publish(self.touchSensor)
-		self.touchSensor.data = data[10]
+		self.touchSensor.data = data[9]
 		self.rightArm.publish(self.touchSensor)
-		self.touchSensor.data = data[11]
+		self.touchSensor.data = data[10]
 		self.head.publish(self.touchSensor)
+		self.touchSensor.data = data[11]
+                self.antenna.publish(self.touchSensor)
 		self.rate.sleep()
 		return
 
